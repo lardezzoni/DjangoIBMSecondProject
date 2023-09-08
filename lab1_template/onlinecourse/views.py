@@ -7,8 +7,12 @@ from django.views import generic, View
 from django.http import Http404
 
 # Create your class based views here.
-
-
+def logout_request(request):
+    #Get the user object based on session id in request
+    print("logout the user {}".format(request.user.username))
+    #logout user in the request
+    logout(request)
+    return redirect('onlinecourse:popular_course_list')
 
 # Function based views
 
@@ -87,4 +91,3 @@ class EnrollView(View):
 class CourseDetailsView(generic.DetailView):
     model = Course
     template_name = 'onlinecourse/course_detail.html'
-    
